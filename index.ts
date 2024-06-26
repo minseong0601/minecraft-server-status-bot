@@ -15,10 +15,10 @@ setInterval(async () => {
         data.online ? console.log(`Server is online ${data.players.online}`) : console.log("Server is offline");
 
         if (data.online === true) {
-            await onlineCount.setName(`접속중인 유저 ${data.players.online} 명`);
-            await client.user?.setActivity(`접속중인 유저 ${data.players.online} 명`);
+            onlineCount.setName(`접속중인 유저 ${data.players.online} 명`);
+            client.user?.setActivity(`접속중인 유저 ${data.players.online} 명`);
         } else {
-            await onlineCount.setName(`서버 오프라인`);
+            onlineCount.setName(`서버 오프라인`);
         }
     } else {
         console.log("Failed to get data");
