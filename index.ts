@@ -1,4 +1,4 @@
-import Discord, { Guild } from 'discord.js';
+import Discord from 'discord.js';
 import axios from 'axios';
 import fs from 'fs';
 
@@ -6,8 +6,10 @@ const client = new Discord.Client({
     intents: [ 'Guilds' ]
 });
 
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8')).serverAddress;
+
 setInterval(async () => {
-    const { status, data } = await axios.get(`https://api.mcsrvstat.us/3/${JSON.parse(fs.readFileSync('./config.json', 'utf-8')).serverAddress}`);
+    const { status, data } = await axios.get(`https://api.mcsrvstat.us/3/${config}`);
     
     if ( status >= 200 && status < 300 ) {
         const onlineCount = client.channels.cache.find(channel => channel.id === '1255455700210024468') as Discord.VoiceChannel;
